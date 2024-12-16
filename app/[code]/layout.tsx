@@ -6,6 +6,7 @@ import {
 } from "@vercel/flags/next";
 import { FlagValues } from "@vercel/flags/react";
 import { Suspense } from "react";
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 async function ConfidentialFlagValues({ values }: { values: FlagValuesType }) {
   const encryptedFlagValues = await encrypt(values);
@@ -38,6 +39,7 @@ export default async function Layout({
   return (
     <>
       {children}
+      <SpeedInsights />
       <Suspense fallback={null}>
         <ConfidentialFlagValues values={values} />
       </Suspense>
